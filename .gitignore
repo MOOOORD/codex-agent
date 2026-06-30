@@ -1,0 +1,6 @@
+ node_modules/
+ .expo/
+ dist/
+ dist-test/
+ assets/expo-go.apk
+ npm-debug.*

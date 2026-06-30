@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "Codex 智能助手",
+    "slug": "codex-mobile-agent",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#F5F0FF"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.codex.agent"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#F5F0FF"
+      },
+      "package": "com.codex.agent"
+    },
+    "plugins": [],
+    "extra": {
+      "eas": {
+        "projectId": "8f7d5f39-3391-4d29-8c22-c595745a09e0"
+      }
+    },
+    "owner": "mooord"
+  }
+}
