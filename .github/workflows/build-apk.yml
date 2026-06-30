@@ -32,7 +32,7 @@ jobs:
           sudo apt-get install -y -qq wget unzip 2>&1 | tail -3
           export ANDROID_HOME=$HOME/android-sdk
           mkdir -p $ANDROID_HOME && cd $ANDROID_HOME
-          wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O tools.zip
+          wget -q https://mirrors.cloud.tencent.com/AndroidSDK/commandlinetools-linux-11076708_latest.zip -O tools.zip
           unzip -q tools.zip && rm tools.zip
           mkdir -p cmdline-tools/latest
           mv cmdline-tools/* cmdline-tools/latest/ 2>/dev/null; mv cmdline-tools/latest/cmdline-tools/* cmdline-tools/latest/ 2>/dev/null; rmdir cmdline-tools/latest/cmdline-tools 2>/dev/null; true
