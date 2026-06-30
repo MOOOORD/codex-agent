@@ -24,23 +24,14 @@
        - name: Prebuild Android project
          run: npx expo prebuild --platform android --no-install
 
-       - name: List files (debug)
-         run: |
-           cd android
-           find app/build -name "*.apk" -o -name "*.aab" 2>/dev/null || true
-           ls -la app/build/outputs/ 2>/dev/null || echo "No outputs dir"
+       - name: Set ANDROID_HOME
+         run: echo "ANDROID_HOME=/usr/local/lib/android/sdk" >> $GITHUB_ENV
 
        - name: Build APK (debug)
          run: cd android && ./gradlew assembleDebug
-
-       - name: Find and upload APK
-         run: |
-           find android -name "*.apk" -type f | head -5
-           find . -name "*.apk" -type f | head -5
 
        - name: Upload APK
          uses: actions/upload-artifact@v4
          with:
            name: codex-agent.apk
            path: android/**/*.apk
-           if-no-files-found: error
