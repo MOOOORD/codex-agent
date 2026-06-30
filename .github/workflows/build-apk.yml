@@ -26,19 +26,14 @@ jobs:
       - name: Prebuild Android project
         run: npx expo prebuild --platform android --no-install
 
-      - name: Install Android SDK + NDK
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq wget unzip 2>&1 | tail -3
-          export ANDROID_HOME=$HOME/android-sdk
-          mkdir -p $ANDROID_HOME && cd $ANDROID_HOME
-          for i in 1 2 3 4 5; do curl -sLo tools.zip --connect-timeout 30 --max-time 120 https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip && break || sleep 5; done
-          unzip -q tools.zip && rm tools.zip
-          mkdir -p cmdline-tools/latest
-          mv cmdline-tools/* cmdline-tools/latest/ 2>/dev/null; mv cmdline-tools/latest/cmdline-tools/* cmdline-tools/latest/ 2>/dev/null; rmdir cmdline-tools/latest/cmdline-tools 2>/dev/null; true
-          yes | cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDROID_HOME "platforms;android-34" "build-tools;34.0.0" "ndk;24.0.8215888" "platform-tools" > /dev/null 2>&1
-          echo "ANDROID_HOME=$ANDROID_HOME" >> $GITHUB_ENV
-          echo "ANDROID_SDK_ROOT=$ANDROID_HOME" >> $GITHUB_ENV
+      - uses: CityOfZion/setup-android-sdk@v1
+        with:
+          cache: true
+          packages: |
+            platforms;android-34
+            build-tools;34.0.0
+            ndk;24.0.8215888
+            platform-tools
 
       - name: Build APK (debug)
         run: cd android && ./gradlew assembleDebug
